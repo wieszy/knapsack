@@ -1,0 +1,241 @@
+{{ block title }}
+
+{{ if test_round }}
+Example task (Block {{ block_n }})
+{{ else }}
+Block {{ block_n }} (Task {{ task_idx }} / {{ task_count }})
+{{ endif }}
+{{ endblock }}
+
+{{ block content }}
+<script src="//unpkg.com/alpinejs" defer></script>
+
+<script>
+  const alpha = js_vars.value_multiplier;
+  const multi = Number(!js_vars.single_player);
+
+  const budget = js_vars.budget * alpha;
+  const projects = js_vars.options.map((p) => ({
+    ...p,
+    value_self: p.value_self * alpha,
+    value_other: p.value_other * alpha * multi,
+    cost: p.cost * alpha,
+  }));
+  const endowment = js_vars.endowment * alpha;
+
+  const debounceSend = (data) => {
+    clearTimeout(debounceSend.timeout);
+    debounceSend.timeout = setTimeout(() => {
+      liveSend(data);
+    }, 100);
+  };
+
+  function liveRecv() {
+    console.log(...arguments);
+  }
+</script>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    grid-gap: 1rem;
+    align-items: start;
+  }
+
+  [x-cloak] {
+    display: none;
+  }
+</style>
+
+<div x-data="{
+    showBudgetWarning: false,
+    projectMap: new Map(
+      projects.map((p, i) => [p.iid, { ...p, order: i + 1 }])
+    ),
+    chosenProjects: new Set(),
+    total_of(key) {
+      return Array.from(this.chosenProjects)
+        .map((project) => this.projectMap.get(project)[key])
+        .reduce((a, b) => a + b, 0);
+    }
+}">
+  {{ if test_round }}
+  <p>
+    This is an example task for the {{ block_name }} block of tasks. Your
+    choices from this task will not be used for your final payoff.
+  </p>
+  {{ endif }}
+  <p>
+    Please make your selection. To select a project, click on checkbox in the
+    respective row. Click again to unselect a project. Selected projects will be
+    highlighted.
+  </p>
+  {{ if not sp_round }}
+  <p>
+    In this task, the initial donation amount to the charity is {{ endowment }}.
+  </p>
+  {{ endif }}
+  <div>
+    &nbsp;
+    <input type="hidden" name="value_self" :value="total_of('value_self')" />
+    {{ if not sp_round }}
+    <input type="hidden" name="value_other" :value="endowment + total_of('value_other')" />
+    {{ endif }}
+    <input type="hidden" name="cost" :value="total_of('cost')" />
+
+    <div x-cloak x-show="showBudgetWarning" class="alert alert-danger" role="alert">
+      The project exceeds your budget and could not be selected.
+    </div>
+  </div>
+  <div class="grid" x-init="liveSend({event: 'startTask', target: null});">
+    <div>
+      <h3 class="mb-4">Current Selection</h3>
+      <table class="table table-bordered table-striped">
+        <tbody>
+          <tr>
+            <td>Current value (self)</td>
+            <td x-text="total_of('value_self')"></td>
+          </tr>
+          <template x-if="multi">
+            <tr>
+              <td>Current value (charity)</td>
+              <td x-text="total_of('value_other')">0</td>
+            </tr>
+            <tr>
+              <td>Current value (both)</td>
+              <td x-text="total_of('value_self') + total_of('value_other')">
+                0
+              </td>
+            </tr>
+          </template>
+          <tr :class="(total_of('cost') > budget) && 'table-danger'">
+            <td>Remaining budget</td>
+            <td x-text="budget - total_of('cost')">0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <table id="project_selections" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Value (self)</th>
+          <th x-show="multi">Value (charity)</th>
+          <th x-show="multi">Value (both)</th>
+          <th>Cost</th>
+          <th>Selected</th>
+        </tr>
+      </thead>
+      <tbody>
+        <template x-for="(project, i) in projects">
+          <tr :class="chosenProjects.has(project.iid) && 'table-success'">
+            <td x-text="i+1"></td>
+            <td x-text="project.value_self"></td>
+            <td x-show="multi" x-text="project.value_other"></td>
+            <td x-show="multi" x-text="project.value_self + project.value_other"></td>
+            <td x-text="project.cost"></td>
+            <td class="text-center">
+              <input type="checkbox" name="projects" :value="project.project" :checked="chosenProjects.has(project.iid)"
+                @click="(e) => {
+                    if (chosenProjects.has(project.iid)) {
+                    chosenProjects.delete(project.iid);
+                    liveSend({event: 'unselect', target: project.iid});
+                  } else if (total_of('cost') + project.cost <= budget) {
+                    chosenProjects.add(project.iid);
+                    liveSend({event: 'select', target: project.iid});
+                  } else {
+                    e.preventDefault();
+                    showBudgetWarning = true;
+                    setTimeout(() => {
+                      showBudgetWarning = false;
+                    }, 2000);
+                  }
+                }" />
+            </td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{ next_button }}
+
+<h3>Welcome to this experiment!</h3>
+
+<p class="font-italic">
+  You are about to take part in a decision-making experiment where the quality
+  of your decisions can significantly impact your potential earnings. Throughout
+  the experiment, all monetary values are expressed in Experimental Currency
+  Units (ECU), which will be converted at a fixed exchange rate at the end of
+  the experiment (see experimental payout). Rest assured that all your decisions
+  and responses will be handled confidentially. Kindly review the following
+  instructions attentively, and if you have any questions, don't hesitate to
+  seek clarification. Please note that it is essential to turn off your cell
+  phone during the experiment, and that communication with other participants is
+  strictly prohibited.
+</p>
+
+<p>
+  In the following, you will be presented with two blocks of three tasks each.
+  Each task involves selecting a subset of projects while staying within a given
+  budget. For each task, you will be given a list of projects, each with a
+  specified value and cost. You can choose to include or exclude each project.
+  Click on a project to include it in your selection. Click the item again to
+  exclude it from your selection. Included items will be highlighted. Once you
+  have made your selections, please click the "Next" button to submit your
+  answers.
+</p>
+
+<p>
+  In some tasks, these projects will have an impact on a charitable donation
+  (“value (charity)”). This impact can be both positive or negative. Positive
+  amounts increase the donation amount, negative amounts reduce the donation
+  amount. The initial donation amount (excluding the impact of your chosen
+  project portfolio) will be stated on the decision screen. It is possible that
+  the values of different projects will be all positive, all negative, or mixed.
+  This is determined randomly by the software. At the end of the experiment, the
+  cumulative value to the charity associated with your selected projects will be
+  donated to a charity of your choice (see charity payout).
+</p>
+
+<p>
+  <strong>Experimental Payout:</strong> At the end of the experiment, one out of
+  the six tasks is randomly chosen for payout. The cumulative value (self) from
+  your selected projects will be converted from ECU to Euro at a fixed exchange
+  rate of 25 ECU = 1 €. In the unlikely case that the resulting payout is less
+  than €4, you still receive a minimum of €4.
+</p>
+
+<p>
+  <strong>Charity Payout:</strong> Before the final results screen, you will be
+  able to select a charity from a list of five charities, covering several areas
+  (nature, animal welfare, children’s rights, etc.). If the randomly chosen task
+  included a charitable donation, the cumulative value (charity) from your
+  selected projects will be converted from ECU to Euro at a fixed exchange rate
+  of 25 ECU = 1 € and donated to your chosen charity.
+</p>
+
+<h3>Please note:</h3>
+<ul>
+  <li>
+    Take your time to carefully consider each project and make the best decision
+    based on the information provided.
+  </li>
+  <li>
+    There is no right or wrong answer, and we are interested in understanding
+    your decision-making process.
+  </li>
+  <li>
+    Whether or not your paying round included a charitable donation does not
+    affect your expected payout.
+  </li>
+  <li>
+    If you have any questions or need clarification on any part of the
+    instructions, please do not hesitate to ask.
+  </li>
+</ul>
+
+<p>Thank you for participating in our experiment!</p>
+{{ endblock }}

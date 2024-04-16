@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Answer the following question and remember the letter
+{% endblock %}
+
+{% block content %}
+Is <strong>(4 x 3) + 2 = 14? </strong>Letter: <strong>S</strong><br/>
+{% formfield player.answer_5 label="" %}
+    {% next_button %}
+{% endblock %}
+
+

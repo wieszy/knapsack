@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Answer the following question and remember the letter
+{% endblock %}
+
+{% block content %}
+Is <strong>(6 x 3) + 5 = 21? </strong>Letter: <strong>Q</strong><br/>
+{% formfield player.answer_6 label="" %}
+    {% next_button %}
+{% endblock %}
+
+

@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}<br/>
+
+The original sequence was <strong>{{Constants.sequence}}</strong>.
+You remembered <strong>{{player.num_recall}} out of {{Constants.num_letters}} letters</strong> correctly.<br/><br/>
+
+You answered <strong>{{player.correct}} out of {{Constants.num_questions}} questions</strong>
+correctly.<br/><br/>
+
+    {% next_button %}
+{% endblock %}
+
+

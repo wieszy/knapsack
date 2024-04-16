@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Demographic information
+{% endblock %}
+
+{% block content %}
+<p>
+  The following data will be used anonymously and exclusively for scientific
+  purposes. If you have any questions or concerns, please feel free to contact
+  the experimenter.
+</p>
+
+{% formfield player.age label="How old are you (in years)?" %}
+{% formfield player.is_female label="What is your gender" %}
+{% formfield player.education label="What is the highest degree you completed?" %}
+{% formfield player.background
+label="Have you attended any classes on Business or Economics?" %}
+
+{% next_button %}
+{% endblock %}

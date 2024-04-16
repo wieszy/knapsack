@@ -1,0 +1,15 @@
+{
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "files.exclude": {
+    ".mypy_cache": true,
+    "**/__pycache__": true,
+    "**/bin": true,
+    "**/include": true,
+    "**/lib": true
+  },
+  "html.format.indentHandlebars": true,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}

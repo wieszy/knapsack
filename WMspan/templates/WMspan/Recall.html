@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Recall the letters
+{% endblock %}
+
+{% block content %}
+
+{% formfield player.recall label="Which eight letters have been displayed on the previous pages (in capitals)?" %}
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Answer the following question and remember the letter
+{% endblock %}
+
+{% block content %}
+Is <strong>(10 / 2) + 1 = 6? </strong> Letter: <strong>N</strong><br/>
+{% formfield player.answer_2 label="" %}
+    {% next_button %}
+{% endblock %}
+
+

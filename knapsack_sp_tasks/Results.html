@@ -1,0 +1,32 @@
+{{ block title }} Results - Example task (Block {{ block_n }}) {{ endblock }} {{
+block content }}
+
+<p>
+  If this task was chosen for payment, your payoff would be calculated based on
+  the value (self) displayed in the table. This amount would be multiplied by
+  the exchange rate stated in the instructions.
+</p>
+
+<div>
+  <h3 class="mb-4">Your Selection</h3>
+  <table class="table table-bordered table-striped">
+    <tbody>
+      <tr>
+        <td>Value (self)</td>
+        <td>{{ player.value_self }}</td>
+      </tr>
+      {{ if not sp_round }}
+      <tr>
+        <td>Value (charity)</td>
+        <td>{{ player.value_other }}</td>
+      </tr>
+      {{ endif }}
+      <tr>
+        <td>Cost</td>
+        <td>{{ player.cost }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{{ next_button }} {{ endblock }}

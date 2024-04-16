@@ -1,0 +1,116 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Choose your preferred options (1/2)
+{% endblock %}
+
+{% block content %}
+
+    <p>The first row indicates the respective amounts that you will receive. The second row indicates
+the corresponding payments for the other participant.</p>
+
+    <table style="width:650px;" class="table">
+
+        <tr style="border: 3px solid black;">
+            <td>100</td>
+            <td>98</td>
+            <td>96</td>
+            <td>94</td>
+            <td>93</td>
+            <td>91</td>
+            <td>89</td>
+            <td>87</td>
+            <td>85</td>
+            <th>For you</th>
+        </tr>
+        <tr style="border: 3px solid black;">
+            <td>50</td>
+            <td>54</td>
+            <td>59</td>
+            <td>63</td>
+            <td>68</td>
+            <td>72</td>
+            <td>76</td>
+            <td>81</td>
+            <td>85</td>
+            <th>For the other person</th>
+        </tr>
+        <tr>
+            {% for choice in form.offer_1 %}
+                <td>{{ choice }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+    <table style="width:650px;" class="table">
+
+        <tr style="border: 3px solid black;">
+            <td>100</td>
+            <td>94</td>
+            <td>88</td>
+            <td>81</td>
+            <td>75</td>
+            <td>69</td>
+            <td>63</td>
+            <td>56</td>
+            <td>50</td>
+            <th>For you</th>
+        </tr>
+        <tr style="border: 3px solid black;">
+            <td>50</td>
+            <td>56</td>
+            <td>63</td>
+            <td>69</td>
+            <td>75</td>
+            <td>81</td>
+            <td>88</td>
+            <td>94</td>
+            <td>100</td>
+            <th>For the other person</th>
+        </tr>
+        <tr>
+            {% for choice in form.offer_2 %}
+                <td>{{ choice }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    <table style="width:650px;" class="table">
+
+        <tr style="border: 3px solid black;">
+            <td>50</td>
+            <td>54</td>
+            <td>59</td>
+            <td>63</td>
+            <td>68</td>
+            <td>72</td>
+            <td>76</td>
+            <td>81</td>
+            <td>85</td>
+            <th>For you</th>
+        </tr>
+        <tr style="border: 3px solid black;">
+            <td>100</td>
+            <td>89</td>
+            <td>79</td>
+            <td>68</td>
+            <td>58</td>
+            <td>47</td>
+            <td>36</td>
+            <td>26</td>
+            <td>15</td>
+            <th>For the other person</th>
+        </tr>
+        <tr>
+            {% for choice in form.offer_3 %}
+                <td>{{ choice }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+
+    {% next_button %}
+
+    {% include C.INSTRUCTIONS_TEMPLATE %}
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{{ block title }} Results {{ endblock }} {{ block content }}
+
+<p>
+  The experiment has finished. Thanks for participating. Your choices are
+  displayed below, with the randomly selected payout task highlighted in green.
+</p>
+
+<h3 class="my-4">Block I</h3>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Value (self)</th>
+      {{ if charity_in_bi }}
+      <th>Value (charity)</th>
+      {{ endif }}
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ for round in block_i }}
+    <tr class=" {{ round.class }}">
+      <td>{{ round.value_self }}</td>
+      {{ if charity_in_bi }}
+      <td>{{ round.value_other }}</td>
+      {{ endif }}
+      <td>{{ round.cost }}</td>
+    </tr>
+    {{ endfor }}
+  </tbody>
+</table>
+
+<h3 class="my-4">Block II</h3>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Value (self)</th>
+      {{ if not charity_in_bi }}
+      <th>Value (charity)</th>
+      {{ endif }}
+      <th>Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ for round in block_ii }}
+    <tr class=" {{ round.class }}">
+      <td>{{ round.value_self }}</td>
+      {{ if not charity_in_bi }}
+      <td>{{ round.value_other }}</td>
+      {{ endif }}
+      <td>{{ round.cost }}</td>
+    </tr>
+    {{ endfor }}
+  </tbody>
+</table>
+
+<p>
+  Based on the task chosen for payment, your payoff from this experiment will
+  be:
+</p>
+<p>
+  <strong>{{ selected.value_self }}€</strong>
+</p>
+
+{{ if selected.value_other }}
+<p>
+  This task included a charitable donation. Based on your choices, the total
+  donation is:
+</p>
+<p><strong> {{ selected.value_other }}€ </strong></p>
+<p>This amount will be donated on your behalf to the following project:</p>
+<p><strong> {{player.charity_choice}} </strong></p>
+{{ else }}
+<p>This task did not include a charitable donation.</p>
+{{ endif }} {{ endblock }}

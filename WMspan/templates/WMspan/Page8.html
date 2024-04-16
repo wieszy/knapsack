@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Answer the following question and remember the letter
+{% endblock %}
+
+{% block content %}
+Is <strong>(2 x 5) - 3 = 7? </strong>Letter: <strong>T</strong><br/>
+{% formfield player.answer_8 label="" %}
+    {% next_button %}
+{% endblock %}
+
+

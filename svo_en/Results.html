@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    <p>From this short experiment you will get <strong>{{ player.participant.payoff_plus_participation_fee }}</strong>.
+    </p>
+
+    {% next_button %}
+{% endblock %}
+
+

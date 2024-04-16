@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Answer the following question and remember the letter
+{% endblock %}
+
+{% block content %}
+Is <strong>(3 x 3) + 1 = 11? </strong>Letter: <strong>J</strong><br/>
+{% formfield player.answer_4 label="" %}
+    {% next_button %}
+{% endblock %}
+
+

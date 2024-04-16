@@ -1,0 +1,14 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree %}
+
+{% block title %}
+Answer the following question and remember the letter
+{% endblock %}
+
+{% block content %}
+Is <strong>(8 / 4) - 1 = 1? </strong>Letter: <strong>K</strong><br/>
+{% formfield player.answer_3 label="" %}
+    {% next_button %}
+{% endblock %}
+
+
