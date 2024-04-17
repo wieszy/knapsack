@@ -29,8 +29,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 ROOMS = [
     {
         'name': 'prolific',
-        'display_name': 'Prolific',
-        'use_secure_urls': True
+        'display_name': 'Prolific'
     }
 ]
 
