@@ -26,6 +26,13 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
 )
 
+ROOMS = [
+    {
+        'name': 'prolific',
+        'display_name': 'Prolific',
+        'use_secure_urls': True,
+]
+
 PARTICIPANT_FIELDS = []
 SESSION_FIELDS = []
 
