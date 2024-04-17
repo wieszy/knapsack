@@ -4,6 +4,7 @@ SESSION_CONFIGS = [
     dict(
         name="knapsack",
         app_sequence=[
+            "welcome_prolific",
             "svo_en",
             "WMspan",
             "knapsack_sp_intro",

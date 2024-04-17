@@ -1,0 +1,25 @@
+{{ block title }} Welcome to this experiment!{{ endblock }} {{ block content }}
+
+    <div>
+        <p>This experiment is designed to mimic different aspects of economic decision-making. It consists of three main stages: </p>
+
+        <ul>
+            <li>	<b>Task 1: Deciding for yourself and others</li><br/>
+            
+            <li>	Task 2: Equations and letters</li><br/>
+
+            <li>	Task 3: Choosing projects (Main experiment)</li><br/></b>
+
+         </ul>
+
+        <p>The whole experiment will take approximately 45 min – 1 hour. At the end of the experiment, you will be paid for your participation.
+            Your final payoff depends on your performance in all four tasks, so it is in your interest to read the instructions carefully and do your best.
+            Good luck!</p>
+
+    </div>
+
+{{ for field in form }}
+{{ formfield field }}
+{{ endfor }}
+
+{{ next_button }} {{ endblock }}

@@ -74,17 +74,17 @@ def set_payoffs(group: Group):
                 C.OWN_FIRST[own.offer_1 - 1]
                 + C.OWN_SECOND[own.offer_2 - 1]
                 + C.OWN_THIRD[own.offer_3 - 1]
-                + C.OWN_FIRST[own.offer_4 - 1]
-                + C.OWN_SECOND[own.offer_5 - 1]
-                + C.OWN_THIRD[own.offer_6 - 1]
+                + C.OWN_FOURTH[own.offer_4 - 1]
+                + C.OWN_FIFTH[own.offer_5 - 1]
+                + C.OWN_SIXTH[own.offer_6 - 1]
             )
             other.payoff += (1 / 200) * (
                 C.OTHER_FIRST[own.offer_1 - 1]
                 + C.OTHER_SECOND[own.offer_2 - 1]
                 + C.OTHER_THIRD[own.offer_3 - 1]
-                + C.OTHER_FIRST[own.offer_4 - 1]
-                + C.OTHER_SECOND[own.offer_5 - 1]
-                + C.OTHER_THIRD[own.offer_6 - 1]
+                + C.OTHER_FOURTH[own.offer_4 - 1]
+                + C.OTHER_FIFTH[own.offer_5 - 1]
+                + C.OTHER_SIXTH[own.offer_6 - 1]
             )
         else:
             own = group.get_player_by_id(2)
@@ -93,17 +93,17 @@ def set_payoffs(group: Group):
                 C.OWN_FIRST[own.offer_1 - 1]
                 + C.OWN_SECOND[own.offer_2 - 1]
                 + C.OWN_THIRD[own.offer_3 - 1]
-                + C.OWN_FIRST[own.offer_4 - 1]
-                + C.OWN_SECOND[own.offer_5 - 1]
-                + C.OWN_THIRD[own.offer_6 - 1]
+                + C.OWN_FOURTH[own.offer_4 - 1]
+                + C.OWN_FIFTH[own.offer_5 - 1]
+                + C.OWN_SIXTH[own.offer_6 - 1]
             )
             other.payoff += (1 / 200) * (
                 C.OTHER_FIRST[own.offer_1 - 1]
                 + C.OTHER_SECOND[own.offer_2 - 1]
                 + C.OTHER_THIRD[own.offer_3 - 1]
-                + C.OTHER_FIRST[own.offer_4 - 1]
-                + C.OTHER_SECOND[own.offer_5 - 1]
-                + C.OTHER_THIRD[own.offer_6 - 1]
+                + C.OTHER_FOURTH[own.offer_4 - 1]
+                + C.OTHER_FIFTH[own.offer_5 - 1]
+                + C.OTHER_SIXTH[own.offer_6 - 1]
             )
 
 

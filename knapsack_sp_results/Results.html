@@ -56,7 +56,7 @@
 </table>
 
 <p>
-  Based on the task chosen for payment, your payoff from this experiment will
+  The computer has randomly chosen one project portfolio for payment. Your payoff has been calculated based on this project portfolio. Your payoff from this experiment will
   be:
 </p>
 <p>
@@ -65,12 +65,11 @@
 
 {{ if selected.value_other }}
 <p>
-  This task included a charitable donation. Based on your choices, the total
-  donation is:
+  The chosen project portfolio included a charitable donation. Based on your choices, the total donation is:
 </p>
 <p><strong> {{ selected.value_other }}€ </strong></p>
 <p>This amount will be donated on your behalf to the following project:</p>
 <p><strong> {{player.charity_choice}} </strong></p>
 {{ else }}
-<p>This task did not include a charitable donation.</p>
+<p>The chosen project portfolio did not include a charitable donation.</p>
 {{ endif }} {{ endblock }}
