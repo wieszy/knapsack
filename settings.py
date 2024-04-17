@@ -52,14 +52,3 @@ DEMO_PAGE_INTRO_HTML = """ """
 
 SECRET_KEY = "9815831165721"
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'otree_db_d8k9',
-        'USER': 'otree_db_d8k9_user',
-        'PASSWORD': 'o29ssobrJxq7guG4ph3qFvM6gMGC82IM',
-        'HOST': 'dpg-cofvgs779t8c73ccd5mg-a',
-        'PORT': '5432',
-    }
-}
-
