@@ -30,7 +30,8 @@ ROOMS = [
     {
         'name': 'prolific',
         'display_name': 'Prolific',
-        'use_secure_urls': True,
+        'use_secure_urls': True
+    }
 ]
 
 PARTICIPANT_FIELDS = []
