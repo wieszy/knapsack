@@ -12,7 +12,7 @@
     <tr>
       <th>Value (self)</th>
       {{ if charity_in_bi }}
-      <th>Value (charity)</th>
+      <th>Value (climate)</th>
       {{ endif }}
       <th>Cost</th>
     </tr>
@@ -37,7 +37,7 @@
     <tr>
       <th>Value (self)</th>
       {{ if not charity_in_bi }}
-      <th>Value (charity)</th>
+      <th>Value (climate)</th>
       {{ endif }}
       <th>Cost</th>
     </tr>
@@ -65,11 +65,10 @@
 
 {{ if selected.value_other }}
 <p>
-  The chosen project portfolio included a charitable donation. Based on your choices, the total donation is:
+  The chosen project portfolio included a column "value (climate)". Based on your choices, the total amount used to fund carbon mitigation projects is:
 </p>
 <p><strong> {{ selected.value_other }}€ </strong></p>
-<p>This amount will be donated on your behalf to the following project:</p>
-<p><strong> {{player.charity_choice}} </strong></p>
+<p>This amount will be transfered to GROW MY TREE. A confirmation will be sent to your Prolific inbox.</p>
 {{ else }}
-<p>The chosen project portfolio did not include a charitable donation.</p>
+<p>The chosen project portfolio did not include an impact on carbon mitigation funding.</p>
 {{ endif }} {{ endblock }}
