@@ -16,9 +16,9 @@ Your app description
 
 
 class C(BaseConstants):
-    NAME_IN_URL = "svo_de"
-    PLAYERS_PER_GROUP = 2
+    NAME_IN_URL = "svo_en"
     NUM_ROUNDS = 1
+    PLAYERS_PER_GROUP = None
     INSTRUCTIONS_TEMPLATE = "svo_en/Instructions.html"
     OWN_FIRST = (100, 98, 96, 94, 93, 91, 89, 87, 85)
     OWN_SECOND = (100, 94, 88, 81, 75, 69, 63, 56, 50)
@@ -65,47 +65,21 @@ class Player(BasePlayer):
 
 
 # FUNCTIONS
-def set_payoffs(group: Group):
-    for p in group.get_players():
-        if p.id_in_group == 1:
-            own = group.get_player_by_id(1)
-            other = group.get_player_by_id(2)
-            own.payoff += (1 / 500) * (
-                C.OWN_FIRST[own.offer_1 - 1]
-                + C.OWN_SECOND[own.offer_2 - 1]
-                + C.OWN_THIRD[own.offer_3 - 1]
-                + C.OWN_FOURTH[own.offer_4 - 1]
-                + C.OWN_FIFTH[own.offer_5 - 1]
-                + C.OWN_SIXTH[own.offer_6 - 1]
+def set_payoffs(player: Player):
+            player.payoff += (1 / 500) * (
+                C.OWN_FIRST[player.offer_1 - 1]
+                + C.OWN_SECOND[player.offer_2 - 1]
+                + C.OWN_THIRD[player.offer_3 - 1]
+                + C.OWN_FOURTH[player.offer_4 - 1]
+                + C.OWN_FIFTH[player.offer_5 - 1]
+                + C.OWN_SIXTH[player.offer_6 - 1]
+                + C.OTHER_FIRST[player.offer_1 - 1]
+                + C.OTHER_SECOND[player.offer_2 - 1]
+                + C.OTHER_THIRD[player.offer_3 - 1]
+                + C.OTHER_FOURTH[player.offer_4 - 1]
+                + C.OTHER_FIFTH[player.offer_5 - 1]
+                + C.OTHER_SIXTH[player.offer_6 - 1]
             )
-            other.payoff += (1 / 500) * (
-                C.OTHER_FIRST[own.offer_1 - 1]
-                + C.OTHER_SECOND[own.offer_2 - 1]
-                + C.OTHER_THIRD[own.offer_3 - 1]
-                + C.OTHER_FOURTH[own.offer_4 - 1]
-                + C.OTHER_FIFTH[own.offer_5 - 1]
-                + C.OTHER_SIXTH[own.offer_6 - 1]
-            )
-        else:
-            own = group.get_player_by_id(2)
-            other = group.get_player_by_id(1)
-            own.payoff += (1 / 500) * (
-                C.OWN_FIRST[own.offer_1 - 1]
-                + C.OWN_SECOND[own.offer_2 - 1]
-                + C.OWN_THIRD[own.offer_3 - 1]
-                + C.OWN_FOURTH[own.offer_4 - 1]
-                + C.OWN_FIFTH[own.offer_5 - 1]
-                + C.OWN_SIXTH[own.offer_6 - 1]
-            )
-            other.payoff += (1 / 500) * (
-                C.OTHER_FIRST[own.offer_1 - 1]
-                + C.OTHER_SECOND[own.offer_2 - 1]
-                + C.OTHER_THIRD[own.offer_3 - 1]
-                + C.OTHER_FOURTH[own.offer_4 - 1]
-                + C.OTHER_FIFTH[own.offer_5 - 1]
-                + C.OTHER_SIXTH[own.offer_6 - 1]
-            )
-
 
 # PAGES
 class Introduction(Page):
@@ -121,17 +95,12 @@ class Page2(Page):
     form_model = "player"
     form_fields = ["offer_4", "offer_5", "offer_6"]
 
-
-class ResultsWaitPage(WaitPage):
-    @staticmethod
-    def after_all_players_arrive(group: Group):
-        set_payoffs(group)
-        for p in group.get_players():
-            p.participant.vars["svo_result"] = p.participant.payoff
-
+    def before_next_page(player: Player, timeout_happened):
+        set_payoffs(player)
+        player.participant.vars["svo_result"] = player.participant.payoff
 
 class Results(Page):
     pass
 
 
-page_sequence = [Introduction, Page1, Page2, ResultsWaitPage, Results]
+page_sequence = [Introduction, Page1, Page2]

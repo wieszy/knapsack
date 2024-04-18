@@ -7,10 +7,10 @@ SESSION_CONFIGS = [
             "welcome_prolific",
             "svo_en",
             "WMspan",
+            "CRT",
             "knapsack_sp_intro",
             "knapsack_sp_tasks",
             "knapsack_sp_results",
-            "demographics",
         ],
         num_demo_participants=12,
         budget=100,
@@ -33,7 +33,7 @@ ROOMS = [
     }
 ]
 
-PARTICIPANT_FIELDS = []
+PARTICIPANT_FIELDS = ['CRT_result', 'svo_result']
 SESSION_FIELDS = []
 
 # ISO-639 code
