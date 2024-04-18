@@ -70,7 +70,7 @@ def set_payoffs(group: Group):
         if p.id_in_group == 1:
             own = group.get_player_by_id(1)
             other = group.get_player_by_id(2)
-            own.payoff += (1 / 200) * (
+            own.payoff += (1 / 500) * (
                 C.OWN_FIRST[own.offer_1 - 1]
                 + C.OWN_SECOND[own.offer_2 - 1]
                 + C.OWN_THIRD[own.offer_3 - 1]
@@ -78,7 +78,7 @@ def set_payoffs(group: Group):
                 + C.OWN_FIFTH[own.offer_5 - 1]
                 + C.OWN_SIXTH[own.offer_6 - 1]
             )
-            other.payoff += (1 / 200) * (
+            other.payoff += (1 / 500) * (
                 C.OTHER_FIRST[own.offer_1 - 1]
                 + C.OTHER_SECOND[own.offer_2 - 1]
                 + C.OTHER_THIRD[own.offer_3 - 1]
@@ -89,7 +89,7 @@ def set_payoffs(group: Group):
         else:
             own = group.get_player_by_id(2)
             other = group.get_player_by_id(1)
-            own.payoff += (1 / 200) * (
+            own.payoff += (1 / 500) * (
                 C.OWN_FIRST[own.offer_1 - 1]
                 + C.OWN_SECOND[own.offer_2 - 1]
                 + C.OWN_THIRD[own.offer_3 - 1]
@@ -97,7 +97,7 @@ def set_payoffs(group: Group):
                 + C.OWN_FIFTH[own.offer_5 - 1]
                 + C.OWN_SIXTH[own.offer_6 - 1]
             )
-            other.payoff += (1 / 200) * (
+            other.payoff += (1 / 500) * (
                 C.OTHER_FIRST[own.offer_1 - 1]
                 + C.OTHER_SECOND[own.offer_2 - 1]
                 + C.OTHER_THIRD[own.offer_3 - 1]
