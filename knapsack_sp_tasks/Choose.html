@@ -69,11 +69,11 @@ Block {{ block_n }} (Task {{ task_idx }} / {{ task_count }})
   <p>
     Please make your selection. To select a project, click on checkbox in the
     respective row. Click again to unselect a project. Selected projects will be
-    highlighted.
+    highlighted. Please scroll down to make sure that you have seen all available projects. 
   </p>
   {{ if not sp_round }}
   <p>
-    In this task, the initial donation amount to the charity is {{ endowment }}.
+    In this task, the initial funding for carbon mitigation projects is {{ endowment }}.
   </p>
   {{ endif }}
   <div>
@@ -99,7 +99,7 @@ Block {{ block_n }} (Task {{ task_idx }} / {{ task_count }})
           </tr>
           <template x-if="multi">
             <tr>
-              <td>Current value (charity)</td>
+              <td>Current value (climate)</td>
               <td x-text="total_of('value_other')">0</td>
             </tr>
             <tr>
@@ -121,7 +121,7 @@ Block {{ block_n }} (Task {{ task_idx }} / {{ task_count }})
         <tr>
           <th>Project</th>
           <th>Value (self)</th>
-          <th x-show="multi">Value (charity)</th>
+          <th x-show="multi">Value (climate)</th>
           <th x-show="multi">Value (both)</th>
           <th>Cost</th>
           <th>Selected</th>
