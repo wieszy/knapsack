@@ -1,72 +1,13 @@
-{{ block title }} Choosing a charity {{ endblock }}
+{{ block title }} Information about carbon mitigation funding {{ endblock }}
 
 {{ block content }}
 
 <p>
-  If the task chosen for payment includes the column "value (charity)", a
-  charitable donation will be made on your behalf after this experiment.
-</p>
-<p>
-  Please choose the recipient of the charitable payment from the list provided
-  below.
+  If the project portfolio chosen for payment by the software includes the column "value (climate)", the specified amount plus or minus the impact of your project portfolio will used to fund GROW MY TREE.<br/>
+  GROW MY TREE is an organization dedicated to global reforestation and carbon offsetting through tree planting. It provides individuals and businesses with opportunities to plant trees as gifts or as part of a commitment to environmental sustainability. Customers can choose from various tree packages to offset CO2 emissions, contributing to climate goals. The organization supports global reforestation projects with a social impact and emphasizes transparency in its operations. GROW MY TREE also participates in the UN Global Compact, promoting corporate responsibility and sustainable business practices.<br/>
+  Click next to let the software determine which project portfolio will be used for payment.
 </p>
 
-<p>
-  <strong>Project 1: The Nature Conservancy</strong> <br />
-  The Nature Conservancy is a global nonprofit organization dedicated to
-  conserving lands and waters, protecting biodiversity, and addressing climate
-  change. They work with governments, local communities, and other partners to
-  implement science-based solutions to promote sustainability and ensure a
-  healthier, more resilient planet for future generations.
-</p>
-
-<p>
-  <strong>Project 2: School on Wheels</strong> <br />
-  School on Wheels is a nonprofit organization that provides academic support
-  and educational opportunities to homeless children in the United States. Their
-  programs include one-on-one tutoring, school supplies, and scholarships, with
-  the aim of breaking the cycle of homelessness through education and empowering
-  students to reach their full potential.
-</p>
-
-<p>
-  <strong>Project 3: Feeding Pets of the Homeless</strong> <br />
-  Feeding Pets of the Homeless® is the first and one of the few national
-  nonprofits providing pet food and emergency veterinary care to pets that
-  belong to homeless people.
-</p>
-
-<p>
-  <strong>Project 4: Child Creativity Lab</strong> <br />
-  CCL is the only nonprofit organization in Orange County focused on fostering
-  21st century skills: critical thinking, creativity, collaboration, and
-  communication through our signature STEAM (Science, Technology, Engineering,
-  Art, Mathematics) programs by adding the “A” to STEM—using Art to ignite a
-  child’s imagination and problem-solving skills.
-</p>
-
-<p>
-  <strong>Project 5: Second Harvest Food Bank of Orange County</strong> <br />
-  Second Harvest Food Bank of Orange County is a charitable organization that
-  works to alleviate hunger and food insecurity in Orange County, California.
-  They collect, store, and distribute donated food to individuals and families
-  in need through a network of partner agencies and programs, while also
-  addressing the root causes of hunger and advocating for policy changes to
-  create a hunger-free community.
-</p>
-
-<p>
-  <strong>Project 6: Abilities OC</strong> <br />
-  Abilities OC was started in 2016 with the mission of helping Individuals with
-  Special Needs live happy, healthy, and independent lives. With over 20 years
-  experience in providing long term care for adults with developmental needs, we
-  understand the obstacles that need to be overcome. Our story moves with the
-  progress of our community.
-</p>
-
-{{ for field in form }}
-{{ formfield field }}
-{{ endfor }}
 
 {{ next_button }}
 {{ endblock }}

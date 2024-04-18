@@ -44,8 +44,8 @@ class Subsession(BaseSubsession):
 
 
 class ChooseCharity(Page):
-    form_model = "player"
-    form_fields = ["charity_choice"]
+#    form_model = "player"
+#    form_fields = ["charity_choice"]
 
     @staticmethod
     def before_next_page(player: Player, timeout_happened):
