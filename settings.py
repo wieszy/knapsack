@@ -30,6 +30,10 @@ ROOMS = [
     {
         'name': 'prolific',
         'display_name': 'Prolific'
+    },
+        {
+        'name': 'pilot',
+        'display_name': 'Pilot'
     }
 ]
 
