@@ -37,7 +37,7 @@ ROOMS = [
     }
 ]
 
-PARTICIPANT_FIELDS = ['CRT_result', 'svo_result']
+PARTICIPANT_FIELDS = ['svo_result', 'wm_span_result', 'CRT_result', 'knapsack_result']
 SESSION_FIELDS = []
 
 # ISO-639 code
@@ -46,7 +46,7 @@ LANGUAGE_CODE = "en"
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = "GBP"
-USE_POINTS = True
+USE_POINTS = False
 
 ADMIN_USERNAME = "admin"
 # for security, best to set admin password in an environment variable

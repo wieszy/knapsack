@@ -1,8 +1,13 @@
-from otree.api import Currency as c, currency_range
-from ._builtin import Page, WaitPage
-from .models import Constants, checkLetters
-import random
-
+from otree.api import (
+    BaseConstants,
+    BaseSubsession,
+    BaseGroup,
+    BasePlayer,
+    models,
+    widgets,
+    Page,
+    WaitPage,
+)
 
 class Instructions(Page):
     timeout_seconds = 60
@@ -52,10 +57,8 @@ class Recall(Page):
     form_model = 'player'
     form_fields = ['recall']
 
-class Results(Page):
-    def vars_for_template(self):
-        self.player.correct = self.player.answer_1 + self.player.answer_2  + + self.player.answer_3 + self.player.answer_4 + self.player.answer_5 + self.player.answer_6 + self.player.answer_7 + self.player.answer_8
-        self.player.num_recall = checkLetters(Constants.sequence,self.player.recall)
+    def before_next_page(self):
+        self.player.set_payoffs()
 
 page_sequence = [
     Instructions,
@@ -67,6 +70,5 @@ page_sequence = [
     Page6,
     Page7,
     Page8,
-    Recall,
-    Results
+    Recall
 ]

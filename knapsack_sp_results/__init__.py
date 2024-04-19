@@ -56,7 +56,6 @@ def convert_payouts(round):
     eround = {**round}
     eround["value_self"] = C.EUR_PER_TALER * round["value_self"]
     eround["value_other"] = C.EUR_PER_TALER * (round["value_other"] or 0)
-
     return eround
 
 
@@ -66,8 +65,15 @@ class Results(Page):
         prp = db._db.execute(
             f"select * from knapsack_sp_tasks_player where participant_id = :pid and round_number in (2,3,4, 6,7,8)",
             params={"pid": player.participant.id},
-        )  # type: ignore
-        player_rounds = [dict(zip(row.keys(), row)) for row in prp]  # type: ignore
+        )
+        player_rounds = [dict(zip(row.keys(), row)) for row in prp]
+
+        for pr in player_rounds:
+            if pr["round_number"] == player.chosen_round:
+                selected = convert_payouts(pr)
+                break
+
+        player.payoff = selected['value_self']
 
         charity_in_bi = not (player_rounds[0]["mode"] == "sp")
 
@@ -83,5 +89,17 @@ class Results(Page):
 
         return dict(block_i=block_i, block_ii=block_ii, selected=selected, charity_in_bi=charity_in_bi)  # type: ignore
 
+        
+class FinalResults(Page):
+    def vars_for_template(self):
+        wm_span_result = self.participant.vars.get('wm_span_result', 'No result')
+        return {
+            'wm_span_result': wm_span_result
+        }
+        svo_result = self.participant.vars.get('svo_result', 'No result')
+        return {
+            'svo_result': svo_result
+        }
 
-page_sequence = [ChooseCharity, Results]
+
+page_sequence = [ChooseCharity, Results, FinalResults]

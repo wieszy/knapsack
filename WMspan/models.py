@@ -1,8 +1,13 @@
 from otree.api import (
-    models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
-    Currency as c, currency_range
+    BaseConstants,
+    BaseSubsession,
+    BaseGroup,
+    BasePlayer,
+    models,
+    widgets,
+    Page,
+    WaitPage,
 )
-
 
 author = 'Working span test'
 
@@ -20,6 +25,7 @@ class Constants(BaseConstants):
     sequence = 'BNKJSQHT'
 
     num_questions = 8
+    GBP_PER_CORRECT = 0.10
 
 class Subsession(BaseSubsession):
     pass
@@ -83,8 +89,15 @@ class Player(BasePlayer):
 
     recall = models.StringField()
     num_recall = models.IntegerField()
+    
+    def set_payoffs(self):
+        self.correct = self.answer_1 + self.answer_2  + + self.answer_3 + self.answer_4 + self.answer_5 + self.answer_6 + self.answer_7 + self.answer_8
+        self.num_recall = checkLetters(Constants.sequence,self.recall)
+        self.payoff += (self.correct + self.num_recall)*Constants.GBP_PER_CORRECT
+        self.participant.vars["wm_span_result"] = self.payoff
 
-
+    
+# FUNCTIONS
 def checkLetters(original, recall):
     list1 = list(original)
     list2 = list(recall)
@@ -97,3 +110,8 @@ def checkLetters(original, recall):
         else:
             i+=1
     return m
+    
+
+    
+
+            

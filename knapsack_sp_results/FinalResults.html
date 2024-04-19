@@ -1,0 +1,32 @@
+{{ block title }} Thank you for your participation! {{ endblock }} {{ block content }}
+
+<p>
+  You have reached the end of the experiment. Your payoffs from this experiment are shown below.
+</p>
+
+<h3 class="my-4">Payoffs by task</h3>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Task 1 - You and others</th>
+      <th>Task 2 - Equations and letters</th>
+      <th>Task 3 - Hard problems </th>
+      <th>Task 4 - Choosing projects</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ participant.svo_result }}</td>
+      <td>{{ wm_span_result }}</td>
+      <td>{{ participant.CRT_result }}</td>
+      <td>{{ player.payoff }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  Your total payoff from this experiment is <b>{{participant.payoff}}</b>.
+</p>
+
+ {{ endblock }}

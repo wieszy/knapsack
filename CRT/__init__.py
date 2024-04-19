@@ -11,6 +11,7 @@ class C(BaseConstants):
     NAME_IN_URL = 'CRT'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
+    CONVERSION_RATE = 0.25
 
 
 class Subsession(BaseSubsession):
@@ -50,8 +51,8 @@ def set_payoffs(player: Player):
         player.total_correct_answers += 1
     if player.CRT4 == 5:
         player.total_correct_answers += 1
-    player.payoff = 4 * player.total_correct_answers
-    player.participant.CRT_result = player.total_correct_answers
+    player.payoff = player.total_correct_answers*C.CONVERSION_RATE
+    player.participant.CRT_result = player.payoff
 
 
 # PAGES
@@ -61,7 +62,6 @@ class MyPage(Page):
 
     def before_next_page(player: Player, timeout_happened):
         set_payoffs(player)
-
 
 class Results(Page):
     pass

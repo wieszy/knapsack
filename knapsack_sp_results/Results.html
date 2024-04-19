@@ -1,7 +1,7 @@
-{{ block title }} Results {{ endblock }} {{ block content }}
+{{ block title }} Task 4: Results {{ endblock }} {{ block content }}
 
 <p>
-  The experiment has finished. Thanks for participating. Your choices are
+  Your choices are
   displayed below, with the randomly selected payout task highlighted in green.
 </p>
 
@@ -71,4 +71,7 @@
 <p>This amount will be transfered to GROW MY TREE. A confirmation will be sent to your Prolific inbox.</p>
 {{ else }}
 <p>The chosen project portfolio did not include an impact on carbon mitigation funding.</p>
-{{ endif }} {{ endblock }}
+{{ endif }} 
+
+{{ next_button }}
+{{ endblock }}
