@@ -66,7 +66,7 @@ class Player(BasePlayer):
 
 # FUNCTIONS
 def set_payoffs(player: Player):
-            player.payoff += (1 / 500) * (
+            player.payoff += (1 / 1000) * (
                 C.OWN_FIRST[player.offer_1 - 1]
                 + C.OWN_SECOND[player.offer_2 - 1]
                 + C.OWN_THIRD[player.offer_3 - 1]

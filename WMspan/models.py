@@ -25,7 +25,7 @@ class Constants(BaseConstants):
     sequence = 'BNKJSQHT'
 
     num_questions = 8
-    GBP_PER_CORRECT = 0.10
+    GBP_PER_CORRECT = 0.05
 
 class Subsession(BaseSubsession):
     pass
