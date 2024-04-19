@@ -35,7 +35,7 @@ class C(BaseConstants):
     NAME_IN_URL = "knapsack_intro"
     NUM_ROUNDS = 1
     PLAYERS_PER_GROUP = None
-    EUR_PER_TALER = 0.04
+    EUR_PER_TALER = 0.025
     POINTS_CUSTOM_NAME = "Talers"
 
 
